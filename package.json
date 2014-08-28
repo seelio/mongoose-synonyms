@@ -1,0 +1,27 @@
+{
+  "name": "mongoose-synonyms",
+  "description": "Provide synonym search for MongoDB queries",
+  "version": "0.0.1",
+  "author": {
+    "name": "Victor Kareh",
+    "email": "victor@seelio.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vkareh/mongoose-synonyms"
+  },
+  "main": "./index.js",
+  "dependencies": {
+    "hooks": "~0.3.2",
+    "underscore": "~1.7.0"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "istanbul": "*"
+  },
+  "scripts": {
+    "test": "mocha -R spec && npm run coverage",
+    "coverage": "istanbul cover node_modules/mocha/bin/_mocha"
+  }
+}
