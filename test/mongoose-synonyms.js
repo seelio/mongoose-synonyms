@@ -27,16 +27,12 @@ describe('Mongoose synonyms plugin', function() {
 
     it('should map words to synonyms', function() {
       expect(dictionary).to.contain.key('victor');
-      expect(dictionary.victor).to.contain('victor');
-      expect(dictionary.victor).to.contain('vick');
-      expect(dictionary.victor).to.contain('vic');
+      expect(dictionary.victor).to.contain.members(['victor', 'vick', 'vic']);
     });
 
     it('should map synonyms to words', function() {
       expect(dictionary).to.contain.key('vic');
-      expect(dictionary.vic).to.contain('victor');
-      expect(dictionary.vic).to.contain('vick');
-      expect(dictionary.vic).to.contain('vic');
+      expect(dictionary.vic).to.contain.members(['victor', 'vick', 'vic']);
     });
 
     it('should load custom dictionary from path', function() {
@@ -62,7 +58,7 @@ describe('Mongoose synonyms plugin', function() {
       expect(conditions.firstName).to.be.ok;
       expect(conditions.firstName).to.have.keys('$in');
       expect(conditions.firstName.$in).to.be.an.instanceOf(Array);
-      expect(conditions.firstName.$in).to.contain('victor', 'vick', 'vic');
+      expect(conditions.firstName.$in).to.contain.members(['victor', 'vick', 'vic']);
     });
 
     it('should replace array queries', function() {
