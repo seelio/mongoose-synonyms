@@ -19,7 +19,8 @@
   "devDependencies": {
     "chai": "~1.9.1",
     "istanbul": "~0.3.0",
-    "mocha": "~1.21.4"
+    "mocha": "~1.21.4",
+    "mongoose": "~3.8.15"
   },
   "scripts": {
     "test": "mocha -R spec && npm run coverage",
