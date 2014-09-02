@@ -1,7 +1,7 @@
 {
   "name": "mongoose-synonyms",
   "description": "Provide synonym search for MongoDB queries",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "Victor Kareh",
     "email": "victor@seelio.com"
@@ -17,8 +17,9 @@
     "underscore": "~1.7.0"
   },
   "devDependencies": {
-    "mocha": "*",
-    "istanbul": "*"
+    "chai": "~1.9.1",
+    "istanbul": "~0.3.0",
+    "mocha": "~1.21.4"
   },
   "scripts": {
     "test": "mocha -R spec && npm run coverage",
