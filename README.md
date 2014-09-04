@@ -56,4 +56,6 @@ analyzing the query. The case could be made that the original word should be
 preferred over any of its synonyms, but MongoDB has no way of differentiating
 between them when executing the query.
 
-Dictionaries are included for nicknames of common names, and acronyms.
+Some sample (but usable) dictionaries are included. Feel free to add more
+entries to them and pull request, or to add entirely new dictionaries from free
+and open sources.
