@@ -35,10 +35,10 @@ describe('Mongoose synonyms plugin', function() {
       expect(dictionary.vic).to.contain.members(['victor', 'vick', 'vic']);
     });
 
-    it('should load custom dictionary from path', function() {
-      var dict = mongooseSynonyms.prepareDictionary(require('./dictionary.json'));
+    it('should load dictionary file from path', function() {
+      var dict = mongooseSynonyms.prepareDictionary(require('../dictionaries/universities.json'));
       expect(dict).to.be.ok;
-      expect(dict).to.have.keys(['coffee', 'java', 'brew']);
+      expect(dict).to.contain.keys(['University of Michigan', 'UMICH', 'U of M']);
     });
   });
 
