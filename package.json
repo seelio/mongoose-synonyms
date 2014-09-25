@@ -24,7 +24,7 @@
     "mongoose": "~3.8.15"
   },
   "scripts": {
-    "test": "mocha -R spec && npm run coverage",
+    "test": "mocha -R spec",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha"
   }
 }
