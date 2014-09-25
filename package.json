@@ -1,7 +1,7 @@
 {
   "name": "mongoose-synonyms",
   "description": "Provide synonym search for MongoDB queries",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": {
     "name": "Victor Kareh",
     "email": "victor@seelio.com"
