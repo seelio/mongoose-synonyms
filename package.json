@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/vkareh/mongoose-synonyms"
+    "url": "git://github.com/seelio/mongoose-synonyms"
   },
   "main": "./index.js",
   "dependencies": {
