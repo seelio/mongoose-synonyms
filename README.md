@@ -61,6 +61,27 @@ dictionary file), you should always pass a `dictionaryName` property along with
 it so that the plugin knows to cache it (and thus avoid preparing the dictionary
 from scratch for every database query).
 
+Other options allowed in the plugin are `keyOnly` and `quoteMatch`:
+```javascript
+MySchema.plugin(mongooseSynonyms, {
+  dictionary: 'nicknames',
+  keyOnly: true,
+  quoteMatch: true
+});
+```
+The `keyOnly` flag prepares the dictionary in such a way that each term will be
+replaced by the dictionary key only, thus avoiding all possible synonyms. For
+example, the for the following dictionary entry:
+```javascript
+dictionary["soft drink"] = ["pop", "soda"];
+```
+the plugin would, by default, return `soft drink pop soda` whenever you search
+for _any_ of the three terms. The `keyOnly` flag will ensure that only `soft
+drink` is returned, rather than the entire list of synonyms. The `quoteMatch`
+flag works on top of that to ensure that the matching key is enclosed in quotes.
+Thus, searching for `fruity pop` will return `fruity "soft drink"`, which forces
+an `AND` operation in MongoDB.
+
 Limitations
 -----------
 A limitation of this plugin is that this method would give each word the same

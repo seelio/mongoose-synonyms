@@ -112,13 +112,46 @@ describe('Mongoose synonyms plugin', function() {
       expect(dict).to.contain.keys(['quick', 'rapid', 'fast', 'jump', 'hop', 'skip', 'ov', 'abov', 'lazy', 'idl', 'slug', 'dog', 'canin']);
     });
 
-    it('should get synonms based on word stem', function() {
+    it('should get synonms based on word stem', function(done) {
       var dict = mongooseSynonyms.prepareDictionary('pangram');
-      var addSynonyms = mongooseSynonyms.addSynonyms(dict, ['$text.$search'], true);
+      var addSynonyms = mongooseSynonyms.addSynonyms(dict, ['$text.$search'], {stem: true});
       conditions = { $text: { $search: 'The rapidly hopping fox skipped over the idling dog.' } };
       addSynonyms(function() {
         expect(conditions).to.be.ok;
         expect(conditions.$text.$search).to.equal('The quick rapid fast jumps hops skips fox jumps hops skips over above the lazy idle sluggish dog.');
+        done();
+      }, conditions);
+    });
+  });
+
+  describe('with key lookup only', function() {
+    before(function() {
+      dictionary = mongooseSynonyms.prepareDictionary('u10s', require('../dictionaries/universities.json'), {keyOnly: true});
+    });
+
+    it('should return only the matching key', function(done) {
+      var addSynonyms = mongooseSynonyms.addSynonyms(dictionary, ['$text.$search'], {keyOnly: true});
+      conditions = { $text: { $search: 'foo umich bar' } };
+      addSynonyms(function() {
+        expect(conditions).to.be.ok;
+        expect(conditions.$text.$search).to.equal('foo University of Michigan bar');
+        done();
+      }, conditions);
+    });
+  });
+
+  describe('with key lookup and quoted term', function() {
+    before(function() {
+      dictionary = mongooseSynonyms.prepareDictionary('u10s', require('../dictionaries/universities.json'), {keyOnly: true});
+    });
+
+    it('should return only the matching key surrounded by quotes', function(done) {
+      var addSynonyms = mongooseSynonyms.addSynonyms(dictionary, ['$text.$search'], {keyOnly: true, quoteMatch: true});
+      conditions = { $text: { $search: 'foo umich bar' } };
+      addSynonyms(function() {
+        expect(conditions).to.be.ok;
+        expect(conditions.$text.$search).to.equal('foo "University of Michigan" bar');
+        done();
       }, conditions);
     });
   });
