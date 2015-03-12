@@ -69,9 +69,9 @@ MySchema.plugin(mongooseSynonyms, {
   quoteMatch: true
 });
 ```
-The `keyOnly` flag prepares the dictionary in such a way that each term will be
-replaced by the dictionary key only, thus avoiding all possible synonyms. For
-example, the for the following dictionary entry:
+The `keyOnly` makes sure that each term will be replaced by the dictionary key
+only, thus avoiding all possible synonyms. For example, the for the following
+dictionary entry:
 ```javascript
 dictionary["soft drink"] = ["pop", "soda"];
 ```
